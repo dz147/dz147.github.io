@@ -1,12 +1,74 @@
-﻿<html>
-  <head>
-    <meta charset="utf-8">
-    <title>东子商城</title>
-   
-
-  </head>
-  <body>
-	<marquee>分解诶分解诶dwdw </marquee>
-
-  </body>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图书信息</title>
+		<link rel="stylesheet" type="text/css" href="css/books.css"/>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		
+		<h1 align="center">图书列表</h1>
+	<br/>
+	<table border="1" id="tbl"  cellpadding="0" cellspacing="0" width='800px'>
+			<tr><th>书名</th><th>作者</th><th>价格</th><th>出版社</th><th>出版日期</th><th>操作</th></tr>
+		</table>
+		<script src="js/jquery-1.11.3.min.js">
+		</script>
+		<script>
+			//通用ajax属性
+			$.ajaxSetup({
+				beforeSend:function(){//请求前
+					
+				 },
+				 complete:function(){//请求结束
+				},
+				 error: function(xhr, textStatus, errorThrown) { 
+                        alert(xhr + textStatus + errorThrown);
+                    }
+			});
+			//渲染数据
+			var list=function(){
+				$.ajax({
+				type:"get",//请求的类型
+				url:"ListAllBookServlet?action=list",//请求路径带参数
+				success:function(data){//请求成功回调函数
+					$("#tbl tr:gt(0)").remove();//清空当前表格重新加载
+					$.each(data,function(i,da){
+						 var tr = $("<tr/>");
+                            $("<td/>").html(da.book_name).appendTo(tr);
+                            $("<td/>").html(da.book_author).appendTo(tr);
+                            $("<td/>").html(da.book_price).appendTo(tr);
+                            $("<td/>").html(da.book_).appendTo(tr);
+                            $("<td/>").html(da.publish_dare).appendTo(tr);
+                            var delt=$("<button type='button' id='"+da.book_id+"' onclick='delt(this.id)'>删除</button>");
+                            $("<td/>").append(delt).appendTo(tr);
+                            $("#tbl").append(tr);
+					})
+				}
+			});
+			};
+			list();
+			//删除方法
+			function delt(id){
+				if(id>0){
+					if(confirm("你确定要删除吗?")){
+						$.ajax({
+							type:"post",//请求的类型
+							data:{id:id},
+							url:"ListAllBookServlet?action=delt",//请求路径带参数
+							success:function(data){//请求成功回调函数
+								alert(data.msg);
+								list();
+							}
+						});
+					 }
+				}else{
+					alert("无法删除");
+				}
+				
+			}
+		</script>
+	</body>
 </html>
