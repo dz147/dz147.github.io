@@ -1,74 +1,794 @@
+<!doctype>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>å›¾ä¹¦ä¿¡æ¯</title>
-		<link rel="stylesheet" type="text/css" href="css/books.css"/>
-		<style type="text/css">
+		<title>¾©¶«Ê×Ò³</title>
+		<style type="text/css"> 	
+		body{
+			font-family:Î¢ÈíÑÅºÚ;
+			background-color:rgb(241,241,241);
+		}
+			div{
+				float:left;
+				}
+			.div1{
+				width:101%;
+				height:80px;
+				margin:auto;
+				border:0px solid red;
+				margin:-8px;
+				background-color:#002f57;
+			}
+			.divtopimg{
+				margin:auto;
+				width:90%;
+				height:78px;
+				border:0px solid blue;
+				background-image:url(¾©¶«topÍ¼.jpg);
+				background-size:100% 100%;
+				margin-left:50px;
+			}
 			
-		</style>
-	</head>
-	<body>
-		
-		<h1 align="center">å›¾ä¹¦åˆ—è¡¨</h1>
-	<br/>
-	<table border="1" id="tbl"  cellpadding="0" cellspacing="0" width='800px'>
-			<tr><th>ä¹¦å</th><th>ä½œè€…</th><th>ä»·æ ¼</th><th>å‡ºç‰ˆç¤¾</th><th>å‡ºç‰ˆæ—¥æœŸ</th><th>æ“ä½œ</th></tr>
-		</table>
-		<script src="js/jquery-1.11.3.min.js">
-		</script>
-		<script>
-			//é€šç”¨ajaxå±æ€§
-			$.ajaxSetup({
-				beforeSend:function(){//è¯·æ±‚å‰
-					
-				 },
-				 complete:function(){//è¯·æ±‚ç»“æŸ
-				},
-				 error: function(xhr, textStatus, errorThrown) { 
-                        alert(xhr + textStatus + errorThrown);
-                    }
-			});
-			//æ¸²æŸ“æ•°æ®
-			var list=function(){
-				$.ajax({
-				type:"get",//è¯·æ±‚çš„ç±»å‹
-				url:"ListAllBookServlet?action=list",//è¯·æ±‚è·¯å¾„å¸¦å‚æ•°
-				success:function(data){//è¯·æ±‚æˆåŠŸå›è°ƒå‡½æ•°
-					$("#tbl tr:gt(0)").remove();//æ¸…ç©ºå½“å‰è¡¨æ ¼é‡æ–°åŠ è½½
-					$.each(data,function(i,da){
-						 var tr = $("<tr/>");
-                            $("<td/>").html(da.book_name).appendTo(tr);
-                            $("<td/>").html(da.book_author).appendTo(tr);
-                            $("<td/>").html(da.book_price).appendTo(tr);
-                            $("<td/>").html(da.book_).appendTo(tr);
-                            $("<td/>").html(da.publish_dare).appendTo(tr);
-                            var delt=$("<button type='button' id='"+da.book_id+"' onclick='delt(this.id)'>åˆ é™¤</button>");
-                            $("<td/>").append(delt).appendTo(tr);
-                            $("#tbl").append(tr);
-					})
-				}
-			});
-			};
-			list();
-			//åˆ é™¤æ–¹æ³•
-			function delt(id){
-				if(id>0){
-					if(confirm("ä½ ç¡®å®šè¦åˆ é™¤å—?")){
-						$.ajax({
-							type:"post",//è¯·æ±‚çš„ç±»å‹
-							data:{id:id},
-							url:"ListAllBookServlet?action=delt",//è¯·æ±‚è·¯å¾„å¸¦å‚æ•°
-							success:function(data){//è¯·æ±‚æˆåŠŸå›è°ƒå‡½æ•°
-								alert(data.msg);
-								list();
-							}
-						});
-					 }
-				}else{
-					alert("æ— æ³•åˆ é™¤");
-				}
+			.div2{
+				width:1420px;
+				height:30px;
+				margin:auto;
+				border:0px solid red;
+				background-color:#e3e4e5;
+				margin:-8px;
+				margin-top:8px;
+				text-align:center;
+				font-size:14px;
+				color:gray;
+				float:left;
+				cursor:pointer;
+			}
+			.div3{
+				width:189px;
+				height:169px;
+				border:0px solid red;
+				margin-left:55px;
+				margin-top:-210px;
+				background-image:url(¾©¶«logo.png);
+			}
+			.div2-1{
+				width:48px;
+				height:30px;
+				border:0px solid red ;
+				position:relative;
+				left:265px;
+				top:0px;
+				float:left;
+				!important
+			}
+			.div2-2{
+				width:120px;
+				height:19px;
+				border:1px solid red;
+				float:left;
 				
 			}
-		</script>
+			
+			.div2-1-1{
+				width:270px;
+				height:270px;
+				border:1px solid white ;
+				position:relative;
+				top:10px;
+				visibility:hidden;
+				background-color:white;
+				Z-index:9999;
+			}
+			ul{
+				list-style-type:none;
+			}
+			li{
+				float:left;
+				position:relative;
+				padding:8px;
+				left:-23px;
+				font-size:12px;
+				}
+			.div2-1:hover>.div2-1-1{
+				visibility:visible;
+			}
+			
+			.div2-1-1:hover{
+				visibility:visible;
+			}
+			
+			.div2-1:hover{
+				background-color:white;
+			}
+			.dl{
+				margin-left:150px;
+				width:100px;
+			}
+			.dl2{
+			margin-left:1px;
+				width:80px;
+			}
+			.noen:hover{
+				background-color:#e3e4e5;
+				color:red;
+			}
+			.red{
+				color:red;
+			}
+			.divJD{
+				width:200px;
+				height:150px;
+				border:0px solid red;
+				position:relative;
+				top:10px;
+				visibility:hidden;
+				background-color:white;
+				color:gray;
+				Z-index:99;
+			}
+			.div2-1:hover>.divJD{
+				visibility:visible;
+			}
+			
+			.divJD:hover{
+				visibility:visible;
+			}
+			.div4{
+				width:1420px;
+				height:180px;
+				border:0px solid black;
+				margin-top:8px;
+				margin-left:-8px;
+				float:left;
+			}
+			.div4-1{
+					width:500px;
+					height:35px;
+					border:0px solid red;
+					margin-left:400px;
+					margin-top:40px;
+			}
+			input{
+				font-size:18px;
+				font-family:Î¢ÈíÑÅºÚ;
+			}
+			.div4zxj{
+				width:18px;
+				height:19px;
+				border:0px solid red;
+				background-image:url(https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png);
+				background-repeat:no-repeat;
+				background-position:0px -0px;
+				cursor:pointer;
+				margin-top:47px;
+				margin-left:-80px;
+		}
+		.div4zxj:hover{
+				background-position:0px -20px;
+		}
+			.divsst{
+				width:50px;
+				height:35px;
+				border:0px solid red;
+				border-radiogroup:30px;
+				margin-top:40px;
+				margin-left:-50px;
+				background-image:url(ËÑË÷Í¼.png);
+				cursor:pointer;
+			}
+			.div4-1-1{
+				width:150px;
+				height:32px;
+				border:0px solid red;
+				margin-top:40px;
+				margin-left:15px;	
+				font-size:16px;
+				color:red;
+				font-family:Î¢ÈíÑÅºÚ;
+				background-color:white;
+				text-align:center;
+				line-height:30px;
+				cursor:pointer;
+			}
+			
+			.div4-2{
+					width:750px;
+					height:40px;
+					border:0px solid red;
+					margin-left:300px;
+					margin-top:2px;
+					text-align:center;
+			}
+			.div4-3{
+					width:480px;
+					height:25px;
+					border:0px solid red;
+					margin-left:400px;
+					margin-top:0px;
+					text-align:center;
+					
+			}
+			.div5{
+				width:1349px;
+				height:480px;
+				border:0px solid black;
+				margin-top:-39px;
+				float:left;
+			}
+			.ulleft {
+				width:190px;
+				height:480px;
+				border:0px solid red;
+				margin-top:-10px;
+				margin-left:0px;
+				background-color:white;
+				color:gray;
+				Z-index:1100;
+			}
+			.lieb{
+				width:189px;
+				height:28px;
+				border:0px solid red;
+				margin-top:20px;
+			}
+			.liebd{
+				width:189px;
+				height:28px;
+				border:0px solid red;
+			}
+			.liebc{
+				width:189px;
+				height:28px;
+				border:0px solid red;
+			}
+			
+			.left li{
+				font-size:10px;
+				cursor:pointer;
+				margin-left:-8px;
+				}
+			.men li{
+				font-size:10px;
+				margin-top:-18px;
+				margin-left:-5px;
+				cursor:pointer;
+				
+				}
+			.menu li{
+				font-size:15px;
+				margin-top:-10px;
+				margin-left:10px;
+				cursor:pointer;
+				}
+				li:hover{
+					color:red;
+				}
+			.input{
+				width:450px;
+				height:35px;
+				
+			}
+			.cou:hover{
+				color:red;
+			}
+			.div5-1{
+				width:1000px;
+				height:480px;
+				border:0px solid red;
+				float:left;
+				visibility:hidden;
+				margin-left:188px;
+				margin-top:-445px;
+				background-color:rgb(245,245,245);
+				position:absolute;
+				Z-index:1000px;
+				
+			}
+			.lieb:hover{
+				background-color:#d9d9d9;
+			}
+			
+			.liebc:hover>.div5-1{
+				visibility:visible;
+			}
+			.ulleft:hover+.div5-2{
+				visibility:hidden ;
+			}
+			.ulleft:hover>li{
+				background-color:#d9d9d9;
+			}
+			/*.div5-1:hover{
+				visibility:visible;
+			}*/
+			.a1{
+			text-decoration:none;
+			margin-left:20px;
+			margin-top:30px;
+			cursor:pointer;
+		}
+			.div5-1-1{
+				width:800px;
+				height:24px;
+				border:0px solid red;
+			}
+			.a{
+				margin-left:30px;background-color:black;
+				color:white;
+				font-size:14px;
+			}
+			.div5-1-2{
+				width:570px;
+				height:400px;
+				border:0px solid red;
+				margin-left:38px;
+				
+			}
+			.tan li{
+				font-size:13px;
+				margin-left:10px;
+			}
+			.tant {
+				color:black;
+			}
+			.div5-2{
+				width:590px;
+				height:470px;
+				border:0px solid red;
+				margin-left:10px;
+			}
+			.div5-2-1{
+				width:590px;
+				height:470px;
+				border:0px solid red;
+				margin-left:-41px;
+				margin-top:-47px;
+				background-image:url(https://m.360buyimg.com/babel/jfs/t17686/96/769559198/100115/f40216dc/5aa60894Nac0d8ce8.jpg);
+			}
+			.img li{
+				cursor:pointer;
+			}
+			.gg:hover+.dd+.cc+.div5-2-1{
+			background-image:url(¾©¶«Í¼¶ù.jpg);
+			background-size:100% 100%;
+		}
+		.dd:hover+.cc+.div5-2-1{
+			background-image:url(¾©¶«Í¼Ò».jpg);
+			background-size:100% 100%;
+		}
+		.cc:hover+.div5-2-1{
+			background-image:url(¾©¶«Í¼Èı.jpg);
+			background-size:100% 100%;
+		}
+			
+			.div5-3{
+				width:190px;
+				height:150px;
+				border:0px solid red;
+				margin-left:10px;
+				background-image:url(rigthÒ».png);
+				cursor:pointer;
+			}
+			.div5-4{
+				width:190px;
+				height:150px;
+				border:0px solid red;
+				margin-left:-192px;
+				margin-top:160px;
+				background-image:url(rigth¶ş.png);
+				cursor:pointer;
+			}
+			.div5-5{
+				width:190px;
+				height:150px;
+				border:0px solid red;
+				margin-left:-192px;
+				margin-top:320px;
+				background-image:url(rigthÈı.png);
+				cursor:pointer;
+			}
+			.div5-6{
+				width:190px;
+				height:480px;
+				border:0px solid red;
+				margin-left:10px;
+				float:left;
+				background-color:white;
+			}
+			.img1:hover{
+				opacity:0.9;
+			}
+			.div55{
+				width:60px;
+				height:470px;
+				border:0px solid red;
+				margin-left:-6px;
+				background-image:url(±ß¾àÍ¼Ò».png);
+				background-position:-170px -0px;
+			}
+			.div55:hover>.div55-1{
+				visibility:visible;
+			}
+			.div55-1{
+				width:790px;
+				height:470px;
+				border:0px solid red;
+				background-image:url(±ß¾àÍ¼¶ş.png);
+				position:absolute;
+				left:62px;
+				visibility:hidden;
+				Z-index:1000;
+			}
+			.div5-6-1{
+				width:65px;
+				height:65px;
+				border:0px solid red;
+				margin-left:60px;
+				margin-top:-15px;
+				border-radius:35px;
+				background-image:url(logÍ¼.jpg);
+				background-size:100% 100%;
+			}
+			.div5-6-2{
+				width:190px;
+				height:40px;
+				border:0px solid red;
+				text-align:center;
+			}
+			.p1{
+				font-size:11px;
+				color:gray;
+				margin-top:-1px;
+				cursor:pointer;
+			}
+			.p2{
+				font-size:15px;
+				color:black;
+				margin-top:-6px;
+				cursor:pointer;
+			}
+			.div5-6-3{
+				width:190px;
+				height:25px;
+				border:0px solid red;
+				margin-top:10px;
+			}
+			.div5-6-3-1{
+				width:70px;
+				height:23px;
+				border:0px solid red;
+				margin-left:18px;font-size:14px;background-color:white;
+				color:red;text-align:center;cursor:pointer;
+				border-radius:12px;
+			}
+			.div5-6-3-2{
+				width:70px;
+				height:23px;
+				border:0px solid red;
+				margin-left:10px;
+				font-size:14px;background-color:#363634;
+				text-align:center;cursor:pointer;
+				color:#e5d790;
+				border-radius:12px;
+			}
+			.div5-6-4{
+				width:190px;
+				height:122px;
+				border:0px solid gray;
+				margin-top:13px;
+			}
+			.div5-6-5{
+				width:190px;
+				height:194px;
+				border:0px solid gray;
+				margin-top:21px;
+				background-image:url(·É»úÆ±.png);
+				cursor:pointer;
+			}
+			.div5-7{
+				width:34px;
+				height:35px;
+				border:0px solid red;
+				position:fixed;
+				right:8px;
+				background-image:url(¹ºÎï³µ.png);
+			}
+			
+			.div5-7-1{
+				width:6px;
+				height:705px;
+				border:0px solid red;
+				position:fixed;
+				right:2px;
+				top:0px;
+				background-color:#7a6e6e;
+			}
+			.div5-8{
+				width:270px;
+				height:959px;
+				border:2px solid #7a6e6e;
+				position:fixed;
+				right:2px;
+				top:0px;
+				Z-index:1000;
+				background-color:white;
+				visibility:hidden;
+				font-size:50px;	
+				line-height:-10px;
+			}
+			.div5-7:hover+.div5-8{
+				visibility:visible;
+			}
+			.lieul{
+				margin-top:-5px;
+			}
+			.liebc:hover{
+				background-color:#d9d9d9;
+			}
+			.margin{
+				margin-top:0px;
+			}
+			.liebd:hover{
+				background-color:#d9d9d9;
+			}
+			@font-face{
+				font-family:myiconfont;
+				src:url(iconfont.woff);
+			}
+			 .div2-1{
+				font-family:myiconfont;
+			}
+			.div4-1-1{
+				font-family:myiconfont;
+			}
+			.re{
+				color:red;
+			}
+			.div5-6-4-1{
+				width:30px;
+				height:16px;
+				border:2px solid white;
+				border-bottom-color:red;
+				font-size:13px;
+				text-align:center;
+				margin-left:25px;cursor:pointer;
+			}
+			.noen-2{
+				border-bottom-color:white;
+			}
+			.div5-6-4-2{
+				width:180px;
+				height:96px;
+				border:0px solid blue;
+				font-size:13px;
+				margin-left:8px;
+				margin-top:4px;
+				line-height:1px;
+				cursor:pointer;
+			}
+			.ulrig{
+				margin-left:-18px;
+				margin-top:8px;
+			}
+			
+			</style>
+	</head>
+	<body>
+
+		<div class="div1">
+			<div class="divtopimg"></div>
+		</div>
+		<div class="div2">
+			<div class="div2-1 "><a class="re">&#xe604;</a>¹ã¶«
+					<div class="div2-1-1">
+						<ul >
+							<li >±±¾©</li><li>ÉÏº£</li><li>Ìì½ò</li><li>ÖØÇì</li><li>ºÓ±±<li>
+						</ul>
+						<ul><li>É½Î÷</li><li>ºÓÄÏ</li><li>ÁÉÄş</li><li>¼ªÁÖ</li><li>ºÚÁú½­<li></ul>
+						<ul><li>ÄÚÃÉ¹Å</li><li>½­ËÕ</li><li>É½¶«</li><li>°²»Õ</li><li>Õã½­<li></ul>
+						<ul><li>¸£½¨</li><li>ºş±±</li><li>ºşÄÏ</li><li class="red">¹ã¶«</li><li>¹ãÎ÷<li></ul>
+						<ul><li>½­Î÷</li><li>ËÄ´¨</li><li>º£ÄÏ</li><li>¹óÖİ</li><li>ÔÆÄÏ<li></ul>
+						<ul><li>Î÷²Ø</li><li>ÉÂÎ÷</li><li>¸ÊËà</li><li>Çàº£</li><li>ÄşÏÄ<li></ul>
+						<ul><li>ĞÂ½®</li><li>¸Û°Ä</li><li>Ì¨Íå</li><li>öùÓãµº</li><li>º£Íâ<li></ul>
+					</div>
+			</div>
+			<div class="div2-1 dl noen">ÄúºÃ£¬ÇëÏÈµÇÂ¼</div>
+			<div class="div2-1 dl2 noen red">Ãâ·Ñ×¢²á</div>
+			<div class="div2-1 dl2 noen">ÎÒµÄ¶©µ¥</div>
+			<div class="div2-1 dl2 ">ÎÒµÄ¾©¶«
+				<div class="divJD ">
+					<ul >
+					
+						<li>´ı´¦Àí¶©µ¥</li><li>ÏûÏ¢</li>
+					</ul>
+					<ul><li>·µĞŞÍË»»»õ</li><li>ÎÒµÄ»Ø´ğ</li></ul>
+					<ul><li>½µ¼ÛÉÌÆ·</li><li>ÎÒµÄ¹Ø×¢</li></ul>
+				</div>
+			</div>
+			<div class="div2-1 dl2 noen">¾©¶«»áÔ±</div>
+			<div class="div2-1 dl2 noen">ÆóÒµ²É¹º</div>
+			<div class="div2-1 dl2 ">¿Í»§·şÎñ</div>
+			<div class="div2-1 dl2 ">ÍøÕ¾µ¼º½</div>
+			<div class="div2-1 dl2 noen">ÊÖ»ú¾©¶«</div>
+		</div>
+		<div class="div4">
+			<div class="div4-1">
+				<input class="input" type="text"/>
+			</div>
+			
+			<div class="div4zxj"></div>
+			<div class="divsst"></div>
+			<div class="div4-1-1"><a class="re">&#xe607;</a> ÎÒµÄ¹ºÎï³µ</div>
+			<div class="div4-3 men">
+				<ul >
+					<li class="red">ÈıÕÛÇÀ¼Òµç</li><li>ÈıÕÛ¼Òµç</li><li>ÁúÌ§Í·</li>
+					<li>±¬¿îÎåÕÛ</li><li>Ä¸Ó¤¶Ö»õ</li><li>´º¸û±¸»õ</li><li>499¼õ120</li>
+					
+				</ul>
+			</div>
+			<div class="div4-2 menu">
+				<ul >
+					<li>ÃëÉ±</li><li>ÓÅ»İ¾í</li><li>PLUS»áÔ±</li>
+				</ul>
+				<ul >
+					<li>ÅÄÂô</li><li>¾©¶«·şÊÎ</li><li>¾©¶«³¬ÊĞ</li><li>ÉúÏÊ</li>
+				</ul>
+				<ul >
+					<li>È«Çò¹º</li><li>¾©¶«½ğÈÚ</li>
+				</ul>
+			</div>
+		</div>
+		<div class="div3"></div>
+		<div class="div5">
+		<div class="div55">
+			<div class="div55-1"></div>
+		</div>
+		<div  class="ulleft left">
+			<div class="lieb">
+				<ul class="lieul">
+					<li >¼ÒÓÃµçÆ÷</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >ÊÖ»ú/</li><li >ÔËÓªÉÌ/</li><li>ÊıÂë</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >µçÄÔ/</li><li >°ì¹«</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul ">
+					<li >¼Ò¾Ó/</li><li >¼Ò¾ß/</li><li>¼Ò×°</li><li>³ø¾ß</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >ÄĞ×°/</li><li >Å®×°/</li><li>Í¯×°</li><li>ÄÚÒÂ</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >ÃÀ×±¸ö»¤</li><li >³èÎï</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >Å®Ğ¬/</li><li >°üÏä/</li><li>ÖÓ±í</li><li>Öé±¦</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >ÄĞ×°/</li><li >ÔË¶¯/</li><li>»§Íâ</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >·¿²ú/</li><li >Æû³µ/</li><li>Æû³µÓÃÆ·</li>
+				</ul>
+			</div><div class="liebd">
+				<ul class="lieul">
+					<li >Ä¸Ó¤</li><li >Íæ¾ßÀÖÆ÷</li>
+				</ul>
+			</div><div class="liebd">
+				<ul class="lieul">
+					<li >Ê³Æ·/</li><li >¾ÆÀà/</li><li>ÉúÏÊ</li><li>ÌØ²ú</li>
+				</ul>
+			</div><div class="liebd">
+				<ul class="lieul">
+					<li >ÒÕÊõ</li><li >ÀñÆ·ÏÊ»¨</li><li >Å©×ÊÂÌÖ²</li>
+				</ul>
+			</div><div class="liebd">
+				<ul class="lieul">
+					<li >Ò½Ò©±£½¡</li><li >¼ÆÉúÇéÈ¤</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >Í¼Êé</li><li >ÒôÏñ</li><li >µç×ÓÊé</li>
+				</ul>
+			</div>
+			<div class="liebd">
+				<ul class="lieul">
+					<li >»úÆ±</li><li >¾Æµê</li><li >ÂÃÓÎ</li><li >Éú»î</li>
+				</ul>
+			</div>
+			
+			
+			<div class="liebc">
+				<ul class="lieul">
+					<li >Àí²Æ/</li><li >ÖÚ³ï/</li><li>°×Ìõ/</li><li>±£ÏÕ</li>
+				</ul>
+				<div class="div5-1">
+					<div class="div5-1-1 a1">
+						<a class="a">½ğÈÚÊ×Ò³></a>
+						<a class="a">0ÔªÆÀ²â></a>
+						<a class="a">In»õÍÆ¼ö></a>
+					</div>
+					<div class="div5-1-2 ">
+						<ul class="tan"><li class="tant">Àí²Æ></li><li>¾©¶«Ğ¡½ğ¿â</li><li>»ù½ğÀí²Æ</li><li>¶¨ÆÚÀí²Æ&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </li></ul>
+						<ul class="tan"><li class="tant">ÖÚ³ï></li><li>ÖÇÄÜÓ²¼ş</li><li>Á÷ĞĞÎÄ»¯</li><li>Éú»îÃÀÑ§</li><li>¹«Òæ</li></li><li>ÆäËüÈ¨ÒæÖÚ³ï &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </li></ul>	
+						<ul class="tan"><li class="tant">¶«¼Ò></li><li>Àà¹Ì»¯</li><li>Ë½Ä¼¹ÉÈ¨</li><li>Ñô¹âË½Ä¼</li><li>Í¶×Ê²ßÂÔ&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </li></ul>
+						<ul class="tan"><li class="tant">°×Ìõ></li><li>¾©¶«°×Ìõ</li><li>¾©¶«¸ÖéG</li><li>ÂÃÓÎ°×Ìõ</li><li>°²¾Ó°×Ìõ</li><li>Ğ£Ô°½ğÈÚ</li><li>¾©¶«½ğ²É</li></ul>
+						<ul class="tan"><li class="tant">Ö§¸¶></li><li>¾©¶«Ö§¸¶&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</li></ul>
+						<ul class="tan"><li class="tant">±£ÏÕ></li><li>³µÏÕ</li><li>½¡¿µÏÕ</li><li>ÒâÍâÏÕ</li><li>ÂÃÓÎÏÕ&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </li></ul>
+						<ul class="tan"><li class="tant">¹ÉÆ±></li><li>ÊµÊ±×ÊÑ¶</li><li>ÊĞ³¡ĞĞÇé</li><li>Í¶×Ê´ïÈË</li><li>Á¿»¯Æ½Ì¨ </li></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+				<div class="div5-2">
+					<ul class="img">
+						<li class="gg">1</li>
+						<li class="dd">2</li>
+						<li class="cc">3</li>
+						<div class="div5-2-1"></div>
+					<ul>
+					
+				</div>
+				<div class="div5-3 img1"></div>
+				<div class="div5-4 img1"></div>
+				<div class="div5-5 img1"></div>
+				<div class="div5-6">
+					<div class="div5-6-1"></div>
+					<div class="div5-6-2">
+						<p class="p1">Hi~»¶Ó­À´µ½¾©¶«£¡</p>
+						<p class="p2"><a>µÇÂ½</a>&nbsp &nbsp &nbsp <a>×¢²á</a></p>
+					</div>
+					<div class="div5-6-3">
+						<div class="div5-6-3-1">
+							ĞÂÈË¸£Àû
+						</div><div class="div5-6-3-2">PLUS»áÔ±</div>
+					</div>
+					<div class="div5-6-4">
+						<div class="div5-6-4-1">
+							´ÙÏú
+						</div>
+						<div class="div5-6-4-1 noen-2">
+							¹«¸æ
+						</div>
+						<div class="div5-6-4-1 noen-2">
+							¸ü¶à
+						</div>
+						<div class="div5-6-4-2">
+							<ul class="ulrig"><li>¡¾ÍÆ¼ö¡¿Éñ¾í×î¸ß¼õ500£¡</li></ul>
+							<ul class="ulrig"><li>¼ÒµçàË¹ºµÍÖÁ3¼ş8.8ÕÛ</li></ul>
+							<ul class="ulrig"><li>ÈÙÒ«³©Íæ7C&nbspĞÂÆ·Ê×·¢</li></ul>
+							<ul class="ulrig"><li>µÚ¶ş½ì¾©¶«Ó°Òô½Ú-></li></ul>
+						</div>
+					</div>
+					<div class="div5-6-5">
+						
+					</div>
+				</div>
+				<div class="div5-7">
+					<div class="div5-7-1"></div>
+				</div>
+				<div class="div5-8 ">
+						Âò²»Æğ,
+						¸ù±¾Âò²»Æğ!
+				</div>
+		</div>
+		<br/><br/>
 	</body>
 </html>
