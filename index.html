@@ -1,56 +1,103 @@
-ï»¿<!doctype>
+<!doctype>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>é¦–é¡µ</title>
+		<title>ÁĞ±í</title>
 		<style type="text/css"> 
-			div{
-					width:200px;
-					height:200px;
-					background-color:red;
-					margin:auto;
-					transition:width 2s,background-image 2s,
-					transform 3s;
+		/*!important*/
+			table{
+				width:200px;
+				height:100px;
+				border-collapse:collapse;
+				border:1px solid gray;
+				padding:auto;
+				text-align:center;
 			}
-			 .div1:hover {
-				width:300px;
-				background-image:url("é¥å‰§å¢–.jpg");
-				transform:rotateX(160deg);			
-				transform:translate(100px,200px);
+			
+			td{
+				border:1px solid gray;
+				font-family:Î¢ÈíÑÅºÚ;
+				cursor:pointer;
+			}
+			
+			table:hover .temp{
+				background-color:red;
+				cursor:pointer;
+			}
+			
+			.temp2{
+				font-size:18px;
+			}
+			
+			*[class="temp2"]{
+				cursor:default;
+			}
+			td:hover{
+				background-color:blue;
+				color:white;
+			}
+			table:active *[click]{
+				background-color:yellow;
+				color:white;
+			}
+			.main{
+			width:500px;
+			height:80px;
+			margin:auto;
 		}
-			/*é¥?/
-			.totate{
-				transform:rotate(46deg);
-				background-image:url(é—æ›šç¶….jpg);
-				background-size:100% 100%;
+			.main div{
+				float:left;
+				width:80px;
+				height:50px;
+				margin-right:10px;
+				margin-bottom:5px;
+				font-size:35px;
+				font-family:Á¥Êé;
+				background-color:green;
+				text-align:center;
+				border:1px solid red;
+				border-bottom:4px solid red;
+				cursor:pointer;
 			}
-			/*æ‹‰ä¼¸*/
-			.scale{
-				transform:scale(2,1);
+			
+			.main .div3:active  +table *[click1]{
+				background-color:yellow;
+				color:white;
 			}
-			/*ç§»åŠ¨*/
-			.translate{
-				transform:translate(16px,50px);
+			.main .div2:active  +.div3+table *[clic]{
+				background-color:red;
+				color:white;
 			}
-			/*å€¾æ–œ*/
-			.skew{
-				transform:skew(40deg,30deg);
+			.main .div1:active  +.div2+.div3+table *[cli]{
+				background-color:gray;
+				color:white;
 			}
-			.rotateX{
-				background-imageã€‘rl(é—æ›šç¶….jpg);
-				transform:rotateX(10deg);
-				background-size:100% 100%;
+			.color{
+				background-color:orange;
+				font-family:»ªÎÄ²ÊÔÆ;
 			}
-			/*line-heightè¡Œé«˜*/
+			.main div:active{
+			background-color:gray;
+			border-bottom:4px solid yellow;
+		}
 		</style>
 	</head>
 	<body>
-		<marquee>æ»´æ»´æ»´æ»´</marquee>
-		<div class="totate"></div>
-		<div class="scale "></div>
-		<div class="translate"></div>
-		<div class="skew"></div>
-		<div class="rotateX"></div>
-		<div class="totate div1"></div>
+	<div class="main">
+		<div class="div1 color">ËÄ¼¾</div>
+		<div class="div2 color">Îå·½</div>
+		<div class="div3 color">ÎåĞĞ</div>
+		<table >
+				<tr cli>
+				<td class="temp2">ËÄ¼¾</td>
+				<td click>´º</td><td>ÏÄ</td><td class="temp">Çï</td><td>¶¬</td><td click>&nbsp</td>
+				</tr>
+				<tr clic>
+				<td class="temp2">Îå·½</td><td class="temp">¶«</td><td>ÄÏ</td><td>Î÷</td><td>±±</td><td>ÖĞ</td>
+				</tr>
+				<tr click1>
+				<td class="temp2">ÎåĞĞ</td><td>½ğ</td><td>Ä¾</td><td click>Ë®</td><td class="temp">»ğ</td><td>ÍÁ</td>
+				</tr>
+		</table>
+	</div>
 	</body>
 </html>
